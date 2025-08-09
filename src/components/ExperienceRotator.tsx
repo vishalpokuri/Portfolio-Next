@@ -43,7 +43,7 @@ export default function ExperienceRotator() {
                 exit="exit"
                 transition={transition}
                 variants={variants}
-                className="text-4xl font-bold text-blue-400 leading-0"
+                className="text-4xl font-deb text-blue-400 leading-0"
               >
                 {experiences[currentIndex]}
               </motion.div>
