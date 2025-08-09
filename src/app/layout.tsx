@@ -1,43 +1,42 @@
 import type { Metadata } from "next";
-import { Raleway, Doto } from "next/font/google";
+import localFont from "next/font/local";
 
 import "./globals.css";
 
-const ralewayLightFont = Raleway({
+const ralewayLightFont = localFont({
+  src: "../fonts/Raleway-Light.ttf",
   variable: "--font-ralewayLight",
-  subsets: ["latin"],
   display: "swap",
-  weight: "300",
 });
-const ralewayNormalFont = Raleway({
+
+const ralewayNormalFont = localFont({
+  src: "../fonts/Raleway-Regular.ttf",
   variable: "--font-ralewayNormal",
-  subsets: ["latin"],
   display: "swap",
-  weight: "400",
 });
-const ralewayMediumFont = Raleway({
+
+const ralewayMediumFont = localFont({
+  src: "../fonts/Raleway-Medium.ttf",
   variable: "--font-ralewayMedium",
-  subsets: ["latin"],
   display: "swap",
-  weight: "500",
 });
-const ralewaySemiBoldFont = Raleway({
+
+const ralewaySemiBoldFont = localFont({
+  src: "../fonts/Raleway-SemiBold.ttf",
   variable: "--font-ralewaySemiBold",
-  subsets: ["latin"],
   display: "swap",
-  weight: "600",
 });
-const ralewayBoldFont = Raleway({
+
+const ralewayBoldFont = localFont({
+  src: "../fonts/Raleway-Bold.ttf",
   variable: "--font-ralewayBold",
-  subsets: ["latin"],
   display: "swap",
-  weight: "700",
 });
-const dotoexbFont = Doto({
+
+const dotoexbFont = localFont({
+  src: "../fonts/Doto_Rounded-ExtraBold.ttf",
   variable: "--font-dotoexb",
-  subsets: ["latin"],
-  // display: "swap",
-  weight: "800", // 800 is ExtraBold
+  display: "swap",
 });
 
 /* @theme {

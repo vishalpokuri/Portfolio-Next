@@ -4,11 +4,7 @@ import SkillsWorksSection from "../components/sections/SkillsWorksSection";
 import { PROJECTS } from "../data/projects";
 import { motion } from "framer-motion";
 
-function Home({
-  setTab,
-}: {
-  setTab: (tab: "recentWork" | "home" | "blogs" | "experience") => void;
-}) {
+function Home() {
   const pageVariants = {
     hidden: { filter: "blur(10px)", transform: "translateY(10%)", opacity: 0 },
     visible: { filter: "blur(0)", transform: "translateY(0)", opacity: 1 },
@@ -28,9 +24,9 @@ function Home({
       {/* Row 1 */}
       <HeroSection />
       {/* Row 2 */}
-      <SkillsWorksSection projects={PROJECTS} setTab={setTab} />
+      <SkillsWorksSection projects={PROJECTS} />
       {/* Row 3 */}
-      <LocationExperienceBlogsSection setTab={setTab} />
+      <LocationExperienceBlogsSection />
     </motion.div>
   );
 }

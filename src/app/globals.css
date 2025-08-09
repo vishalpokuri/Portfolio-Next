@@ -49,14 +49,14 @@ html {
   scroll-behavior: smooth;
 }
 
-/* @theme {
-  --font-light: Raleway Light, "sans-serif";
-  --font-reg: Raleway Regular, "sans-serif";
-  --font-sb: Raleway SemiBold, "sans-serif";
-  --font-med: Raleway Medium, "sans-serif";
-  --font-b: Raleway Bold, "sans-serif";
-  --font-deb: Doto Rounded ExtraBold, "sans-serif";
-} */
+@theme {
+  --font-light: var(--font-ralewayLight), sans-serif;
+  --font-reg: var(--font-ralewayNormal), sans-serif;
+  --font-med: var(--font-ralewayMedium), sans-serif;
+  --font-sb: var(--font-ralewaySemiBold), sans-serif;
+  --font-b: var(--font-ralewayBold), sans-serif;
+  --font-deb: var(--font-dotoexb), sans-serif;
+}
 
 /* Hide default cursor */
 * {

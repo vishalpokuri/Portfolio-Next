@@ -22,7 +22,7 @@ const SkillsWorksSection = ({ projects }: SkillsWorksSectionProps) => {
         classes="col-span-2 p-6 font-med"
         data-redirect="true"
         data-cursor-scale="true"
-        onClick={() => router.push("/recentWork")}
+        onClick={() => router.push("/recent-work")}
       >
         <div className="flex items-center justify-between mb-4">
           <p className="text-xl font-deb text-white">Recent works</p>

@@ -1,5 +1,7 @@
 "use client";
 import WholeProject from "../../components/WholeProject";
+import CustomCursor from "../../components/CustomCursor";
+import Container from "../../components/cards/Container";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 
@@ -71,50 +73,59 @@ export default function RecentWorkPage() {
   ];
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-      variants={{
-        hidden: {
-          filter: "blur(10px)",
-          transform: "translateY(10%)",
-          opacity: 0,
-        },
-        visible: { filter: "blur(0)", transform: "translateY(0)", opacity: 1 },
-      }}
-      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const }}
-      className="space-y-6"
-    >
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-2">
-          <h1 className="text-3xl font-deb text-white">Recent Works</h1>
-          <button
-            onClick={() => router.push("/home")}
-            className="flex items-center gap-2 px-4 py-2 border border-[#aaaaaa] rounded-lg text-[#aaaaaa] hover:text-white hover:border-[#404040] transition-all duration-200 font-deb text-sm tracking-[0.2em]"
-          >
-            ← BACK
-          </button>
-        </div>
-        <p className="text-gray-400 font-raleway">
-          A collection of my latest projects and experiments
-        </p>
-      </div>
+    <div className="min-h-screen py-8">
+      <CustomCursor />
+      <Container>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={{
+            hidden: {
+              filter: "blur(10px)",
+              transform: "translateY(10%)",
+              opacity: 0,
+            },
+            visible: {
+              filter: "blur(0)",
+              transform: "translateY(0)",
+              opacity: 1,
+            },
+          }}
+          transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] as const }}
+          className="space-y-6"
+        >
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-2">
+              <h1 className="text-3xl font-deb text-white">Recent Works</h1>
+              <button
+                onClick={() => router.push("/")}
+                className="flex items-center gap-2 px-4 py-2 border border-[#aaaaaa] rounded-lg text-[#aaaaaa] hover:text-white hover:border-[#404040] transition-all duration-200 font-deb text-sm tracking-[0.2em]"
+              >
+                ← BACK
+              </button>
+            </div>
+            <p className="text-gray-400 font-reg">
+              A collection of my latest projects and experiments
+            </p>
+          </div>
 
-      <div className="space-y-6">
-        {projects.map((project) => (
-          <WholeProject
-            subTitle={project.subTitle}
-            key={project.id}
-            title={project.title}
-            image={project.image}
-            description={project.description}
-            githubUrl={project.githubUrl}
-            liveUrl={project.liveUrl}
-            technologies={project.technologies}
-          />
-        ))}
-      </div>
-    </motion.div>
+          <div className="space-y-6">
+            {projects.map((project) => (
+              <WholeProject
+                subTitle={project.subTitle}
+                key={project.id}
+                title={project.title}
+                image={project.image}
+                description={project.description}
+                githubUrl={project.githubUrl}
+                liveUrl={project.liveUrl}
+                technologies={project.technologies}
+              />
+            ))}
+          </div>
+        </motion.div>
+      </Container>
+    </div>
   );
 }
