@@ -36,7 +36,7 @@ function Loader({ onComplete }: LoaderProps) {
     if (phase === "greetings" && currentIndex < greetings.length) {
       const t = setTimeout(() => {
         setCurrentIndex((i) => i + 1);
-      }, 150);
+      }, 200);
       return () => clearTimeout(t);
     }
     if (phase === "greetings" && currentIndex >= greetings.length) {
@@ -58,7 +58,7 @@ function Loader({ onComplete }: LoaderProps) {
   }, [phase, onComplete]);
 
   const greetingVariants = {
-    initial: { y: 50, opacity: 0, filter: "blur(10px)" },
+    initial: { y: 50, opacity: 0, filter: "blur(5px)" },
     animate: {
       y: 0,
       opacity: 1,
