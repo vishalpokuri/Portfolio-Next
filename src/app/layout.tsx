@@ -59,6 +59,29 @@ export const metadata: Metadata = {
     siteName: "Portfolio | Vishal Pokuri",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/ogImage.png",
+        width: 1200,
+        height: 630,
+        alt: "Vishal Pokuri",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Portfolio | Vishal Pokuri",
+    description: "A modern, fast, and optimized portfolio built with Next.js.",
+    images: ["/ogImage.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/meCompressed.jpg", sizes: "16x16" },
+      { url: "/meCompressed.jpg", sizes: "32x32" },
+    ],
+    shortcut: "/meCompressed.jpg",
+    apple: [{ url: "/meCompressed.jpg", sizes: "180x180" }],
   },
 };
 
