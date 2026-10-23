@@ -39,7 +39,7 @@ export const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
-export const DiscordIcon = ({ size = 16 }: { size?: number }) => (
+export const MailIcon = ({ size = 16 }: { size?: number }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"

@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+"use client";
+
+import { motion, useSpring, useTransform } from "framer-motion";
 import { useMousePosition } from "../hooks/useMousePosition";
 import { useMouseState } from "../hooks/useMouseState";
 import { useCursorType } from "../hooks/useCursorType";
@@ -11,6 +13,15 @@ const CustomCursor = () => {
   const { isMouseDown } = useMouseState();
   const { cursorType, inSection } = useCursorType();
 
+  const x = useSpring(
+    useTransform(mousePosition.x, (value) => value - CURSOR_CONFIG.OFFSET.x),
+    CURSOR_CONFIG.ANIMATION.MAIN
+  );
+  const y = useSpring(
+    useTransform(mousePosition.y, (value) => value - CURSOR_CONFIG.OFFSET.y),
+    CURSOR_CONFIG.ANIMATION.MAIN
+  );
+
   const isRedirect = cursorType === "redirect";
   const isHovering = cursorType === "hover";
 
@@ -21,21 +32,11 @@ const CustomCursor = () => {
       : CURSOR_CONFIG.SCALE.IN_SECTION;
   };
 
-  // Hide cursor on mobile devices
-  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-
-  if (isMobile) {
-    return null;
-  }
-
   return (
     <motion.div
-      className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
-      animate={{
-        x: mousePosition.x - CURSOR_CONFIG.OFFSET.x,
-        y: mousePosition.y - CURSOR_CONFIG.OFFSET.y,
-        scale: getScale(),
-      }}
+      className="fixed top-0 left-0 pointer-events-none z-50 hidden md:pointer-fine:block"
+      style={{ x, y }}
+      animate={{ scale: getScale() }}
       transition={{
         type: "spring",
         ...CURSOR_CONFIG.ANIMATION.MAIN,

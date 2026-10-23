@@ -30,7 +30,7 @@ const WholeProject = ({
             alt={title}
             fill
             className="w-full h-full object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 430px"
           />
         </div>
 
@@ -38,24 +38,33 @@ const WholeProject = ({
         <div className="p-6 flex flex-col justify-center space-y-4">
           <div className="flex justify-between">
             <h2 className="text-xl font-deb text-white">
-              {title} {subTitle && <p className="text-gray-400">{subTitle}</p>}
+              {title}{" "}
+              {subTitle && (
+                <span className="block text-gray-400">{subTitle}</span>
+              )}
             </h2>
             <div className="flex gap-3">
               {githubUrl && (
-                <button
-                  onClick={() => window.open(githubUrl, "_blank")}
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${title} source code on GitHub`}
                   className="hover:scale-110 transition-transform duration-200"
                 >
                   <GithubIcon size={22} />
-                </button>
+                </a>
               )}
               {liveUrl && (
-                <button
-                  onClick={() => window.open(liveUrl, "_blank")}
+                <a
+                  href={liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${title}`}
                   className="hover:scale-110 transition-transform duration-200"
                 >
                   <WebLinkIcon size={22} />
-                </button>
+                </a>
               )}
             </div>
           </div>

@@ -2,52 +2,40 @@ import BentoCard from "./BentoCard";
 
 interface SocialCardProps {
   Icon: React.ComponentType<{ size?: number }>;
+  label: string;
   spanText: string;
+  href: string;
   size?: number;
-  type: string;
-  "data-redirect"?: string;
 }
 
 const SocialCard = ({
   Icon,
+  label,
   spanText,
+  href,
   size = 20,
-  type,
-  ...props
 }: SocialCardProps) => {
-  const handleSocial = () => {
-    switch (type) {
-      case "twitter":
-        window.open("https://x.com/vishal_pokuri99", "_blank");
-        return;
-      case "mail":
-        window.open("mailto:vishal.pokuri@gmail.com", "_blank");
-        return;
-      case "linkedin":
-        window.open("https://www.linkedin.com/in/vishal-pokuri/", "_blank");
-        return;
-      case "github":
-        window.open("https://github.com/vishalpokuri", "_blank");
-        return;
-    }
-  };
+  const isExternal = href.startsWith("http");
+
   return (
-    <div onClick={handleSocial}>
-      <BentoCard
-        classes="h-full w-full aspect-square flex flex-col justify-center items-center group relative overflow-hidden cursor-pointer"
-        {...props}
-      >
-        <div className="transition-all duration-300 ease-in-out group-hover:-translate-y-3 group-hover:opacity-0">
+    <a
+      href={href}
+      aria-label={label}
+      {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
+      className="group block h-full w-full rounded-2xl outline-none focus-visible:ring-2 focus-visible:ring-white/30"
+    >
+      <BentoCard classes="h-full w-full aspect-square flex flex-col justify-center items-center relative overflow-hidden">
+        <div className="transition-all duration-300 ease-in-out group-hover:-translate-y-3 group-hover:opacity-0 group-focus-visible:-translate-y-3 group-focus-visible:opacity-0">
           <Icon size={size} />
         </div>
         <span
-          className="absolute left-0 right-0 top-1/2 translate-y-8 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 transition-all duration-300 ease-in-out font-sb text-[#797978] text-center"
+          className="absolute left-0 right-0 top-1/2 translate-y-8 opacity-0 group-hover:-translate-y-1/2 group-hover:opacity-100 group-focus-visible:-translate-y-1/2 group-focus-visible:opacity-100 transition-all duration-300 ease-in-out font-sb text-[#797978] text-center"
           style={{ fontSize: "10px" }}
         >
           {spanText}
         </span>
       </BentoCard>
-    </div>
+    </a>
   );
 };
 

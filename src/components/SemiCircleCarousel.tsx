@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 
@@ -67,7 +69,11 @@ const SemiCircleCarousel = ({
                 zIndex: isFocused ? 10 : 1,
               }}
             >
-              <Project imgURL={project.image} title={project.title} />
+              <Project
+                imgURL={project.image}
+                title={project.title}
+                priority={i === 0}
+              />
             </div>
           );
         })}
@@ -78,7 +84,15 @@ const SemiCircleCarousel = ({
 
 export default SemiCircleCarousel;
 
-function Project({ imgURL, title }: { imgURL: string; title: string }) {
+function Project({
+  imgURL,
+  title,
+  priority,
+}: {
+  imgURL: string;
+  title: string;
+  priority: boolean;
+}) {
   return (
     <div className="w-[240px] aspect-[16/9] bg-white border-2 border-[#303030] rounded-xl overflow-hidden shadow-md relative">
       <Image
@@ -86,8 +100,8 @@ function Project({ imgURL, title }: { imgURL: string; title: string }) {
         alt={title}
         className="w-full h-full object-cover"
         fill
-        sizes="(max-width: 768px) 100vw, 240px"
-        priority
+        sizes="264px"
+        priority={priority}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-black/20 to-transparent"></div>
       <div className="absolute bottom-0 left-0 right-0 p-3 text-center">

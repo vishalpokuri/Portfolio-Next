@@ -14,8 +14,8 @@ function IntroCard() {
           </h1>
         </div>
         <p className="text-gray-500 text-sm font-med max-w-md leading-relaxed">
-          Full-stack developer crafting modern web experiences with attention to
-          detail and performance.
+          Software engineer on Chargebee&apos;s payments team, building gateway
+          integrations, payment SDKs, and checkout experiences.
         </p>
       </div>
     </BentoCard>

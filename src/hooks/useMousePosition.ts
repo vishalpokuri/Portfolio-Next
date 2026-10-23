@@ -1,21 +1,27 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useMotionValue } from "framer-motion";
 
-export interface MousePosition {
-  x: number;
-  y: number;
-}
-
+/**
+ * Pointer position as motion values, so tracking the mouse never re-renders React.
+ * Starts off-screen so nothing shows before the first move.
+ */
 export const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState<MousePosition>({ x: 0, y: 0 });
+  const x = useMotionValue(-100);
+  const y = useMotionValue(-100);
 
   useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
+    const updateMousePosition = (e: PointerEvent) => {
+      x.set(e.clientX);
+      y.set(e.clientY);
     };
 
-    document.addEventListener("mousemove", updateMousePosition);
-    return () => document.removeEventListener("mousemove", updateMousePosition);
-  }, []);
+    window.addEventListener("pointermove", updateMousePosition, {
+      passive: true,
+    });
+    return () => window.removeEventListener("pointermove", updateMousePosition);
+  }, [x, y]);
 
-  return mousePosition;
+  return { x, y };
 };

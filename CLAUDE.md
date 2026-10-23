@@ -24,7 +24,7 @@ This is a Next.js 15 portfolio application using the App Router with TypeScript 
 
 ### Key Architecture Points
 
-- **App Structure**: Uses Next.js App Router with pages in `src/app/` including nested routes for `/experience`, `/home`, `/recentWork`
+- **App Structure**: Uses Next.js App Router with pages in `src/app/` including routes for `/experience`, `/recent-work`, `/resume`
 - **Client-Side Navigation**: Main app component in `src/app/page.tsx` implements tab-based navigation using React state instead of Next.js routing
 - **Font System**: Uses custom Raleway font variants (Light, Regular, Medium, SemiBold, Bold) and Doto ExtraBold, configured via CSS variables in `tailwind.config.js`
 - **Animation**: Framer Motion for page transitions with `AnimatePresence` for smooth tab switching
@@ -35,7 +35,7 @@ This is a Next.js 15 portfolio application using the App Router with TypeScript 
 
 ### Project Structure
 
-- `src/pages/` - Page components (Home, Experience, RecentWork, Loader)
+- `src/views/` - Page components (Home, Loader). Not named `pages/`, since Next.js would turn every file there into a public route.
 - `src/components/` - Reusable UI components organized by function
 - `src/hooks/` - Custom React hooks for cursor and mouse interactions
 - `src/data/` - Static data definitions (projects array)

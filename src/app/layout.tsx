@@ -1,40 +1,52 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import MotionProvider from "../components/MotionProvider";
+import CustomCursor from "../components/CustomCursor";
+import {
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_TITLE,
+  SITE_URL,
+  SOCIAL_LINKS,
+} from "../data/site";
 
 import "./globals.css";
 
+// Latin-only subsets (pyftsubset --flavor=woff2). Characters outside Latin fall back to system fonts.
 const ralewayLightFont = localFont({
-  src: "../fonts/Raleway-Light.ttf",
+  src: "../fonts/Raleway-Light.woff2",
   variable: "--font-ralewayLight",
   display: "swap",
+  preload: false,
 });
 
 const ralewayNormalFont = localFont({
-  src: "../fonts/Raleway-Regular.ttf",
+  src: "../fonts/Raleway-Regular.woff2",
   variable: "--font-ralewayNormal",
   display: "swap",
 });
 
 const ralewayMediumFont = localFont({
-  src: "../fonts/Raleway-Medium.ttf",
+  src: "../fonts/Raleway-Medium.woff2",
   variable: "--font-ralewayMedium",
   display: "swap",
 });
 
 const ralewaySemiBoldFont = localFont({
-  src: "../fonts/Raleway-SemiBold.ttf",
+  src: "../fonts/Raleway-SemiBold.woff2",
   variable: "--font-ralewaySemiBold",
   display: "swap",
 });
 
 const ralewayBoldFont = localFont({
-  src: "../fonts/Raleway-Bold.ttf",
+  src: "../fonts/Raleway-Bold.woff2",
   variable: "--font-ralewayBold",
   display: "swap",
+  preload: false,
 });
 
 const dotoexbFont = localFont({
-  src: "../fonts/Doto_Rounded-ExtraBold.ttf",
+  src: "../fonts/Doto_Rounded-ExtraBold.woff2",
   variable: "--font-dotoexb",
   display: "swap",
 });
@@ -49,19 +61,20 @@ const dotoexbFont = localFont({
 } */
 
 export const metadata: Metadata = {
-  title: "Portfolio | Vishal Pokuri",
-  description: "A modern, fast, and optimized portfolio built with Next.js.",
-  metadataBase: new URL("https://canum.xyz"),
+  title: { default: SITE_TITLE, template: `%s | ${SITE_NAME}` },
+  description: SITE_DESCRIPTION,
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Portfolio | Vishal Pokuri",
-    description: "A modern, fast, and optimized portfolio built with Next.js.",
-    url: "https://canum.xyz",
-    siteName: "Portfolio | Vishal Pokuri",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    siteName: SITE_NAME,
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/ogImage.png",
+        url: "/ogImage.jpg",
         width: 1200,
         height: 630,
         alt: "Vishal Pokuri",
@@ -70,19 +83,30 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio | Vishal Pokuri",
-    description: "A modern, fast, and optimized portfolio built with Next.js.",
-    images: ["/ogImage.png"],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    creator: "@vishal_pokuri99",
+    images: ["/ogImage.jpg"],
   },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "32x32" },
-      { url: "/meCompressed.jpg", sizes: "16x16" },
-      { url: "/meCompressed.jpg", sizes: "32x32" },
-    ],
-    shortcut: "/meCompressed.jpg",
-    apple: [{ url: "/meCompressed.jpg", sizes: "180x180" }],
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: SITE_NAME,
+  url: SITE_URL,
+  jobTitle: "Software Engineer",
+  worksFor: {
+    "@type": "Organization",
+    name: "Chargebee",
+    url: "https://www.chargebee.com",
   },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Vellore Institute of Technology",
+  },
+  email: `mailto:${SOCIAL_LINKS.email}`,
+  sameAs: [SOCIAL_LINKS.github, SOCIAL_LINKS.linkedin, SOCIAL_LINKS.x],
 };
 
 export default function RootLayout({
@@ -103,11 +127,16 @@ export default function RootLayout({
       `}
       suppressHydrationWarning
     >
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <MotionProvider>
+          <CustomCursor />
+          {children}
+        </MotionProvider>
+      </body>
     </html>
   );
 }
